@@ -1,7 +1,9 @@
 package com.example.phillycrime;
 
 import java.io.File;
+import java.io.FileReader;
 import java.util.Calendar;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.FragmentTransaction;
@@ -9,12 +11,14 @@ import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Window;
+import au.com.bytecode.opencsv.CSVReader;
 
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MainActivity extends Activity {
@@ -33,6 +37,7 @@ public class MainActivity extends Activity {
 		map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
 		map.setMyLocationEnabled(true);
 		GPSGrabber locdate= new GPSGrabber(this, mMapFragment);
+		locdate.execute((Void)null);
 	}
 	protected void setUpMap() {
 	    // Do a null check to confirm that we have not already instantiated the map.
@@ -40,8 +45,8 @@ public class MainActivity extends Activity {
 	        map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
 	                            .getMap();
 	        // Check if we were successful in obtaining the map.
-	        if (map != null) {
-	            // The Map is verified. It is now safe to manipulate the map.
+	        if (map == null) {
+	            finish();
 
 	        }
 	    }
@@ -69,7 +74,29 @@ public class MainActivity extends Activity {
 				Calendar c = Calendar.getInstance(); 
 				File file=new File(main.getFilesDir()+File.separator+c.DATE+".csv");
 				if (file.exists()){
-					
+					 CSVReader reader;
+					try {
+						reader = new CSVReader(new FileReader(main.getFilesDir()+File.separator+c.DATE+".csv"));
+						List<String[]> myEntries = reader.readAll();
+						LatLng[] latlngs= new LatLng[myEntries.get(0).length];
+						for (int i=0;i<myEntries.size();i++){
+							for (int n=0;n<myEntries.get(i).length;n++){
+								if (i==0){
+									latlngs[n]=new LatLng(Double.parseDouble(myEntries.get(0)[n]), Double.parseDouble(myEntries.get(1)[n]));
+								}
+								else if (i==1){
+									
+								}
+								else if (i==2){
+									
+								}
+							}
+						}
+						
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 				return null;
 			}
