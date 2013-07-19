@@ -14,5 +14,15 @@
     android:layout_marginBottom="46dp"
     android:layout_marginTop="68dp"
     class="com.google.android.gms.maps.SupportMapFragment" />
+
+<Button
+    android:id="@+id/updateC"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:background="@drawable/update"
+    android:minHeight="48dp"
+    android:minWidth="50dp" />
     
 </RelativeLayout>
