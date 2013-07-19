@@ -4,6 +4,9 @@ import android.support.v4.app.FragmentTransaction;
 
 public class MainActivity extends Activity {
 	private GoogleMap map;
+	public static final String key="HAIlFtZEDI3hRTgOf1MwBRzNst7oiBnLYGqNODUi";
+	public static final String id= "AKIAJYSNO2HXNLWXF72Q";
+	public static final String bucket= "crimedata";
 	public MainActivity(){
 
 	}
@@ -60,6 +63,8 @@ public class MainActivity extends Activity {
 						reader = new CSVReader(new FileReader(main.getFilesDir()+File.separator+c.DATE+".csv"));
 						List<String[]> myEntries = reader.readAll();
 						LatLng[] latlngs= new LatLng[myEntries.get(0).length];
+						String[] datetime= new String[myEntries.get(2).length];
+						String[] crime= new String[myEntries.get(3).length];
 						for (int i=0;i<myEntries.size();i++){
 							for (int n=0;n<myEntries.get(i).length;n++){
 								if (i==0){
@@ -69,7 +74,10 @@ public class MainActivity extends Activity {
 									
 								}
 								else if (i==2){
-									
+									datetime[n]=myEntries.get(i)[n];
+								}
+								else if (i==3){
+									crime[n]=myEntries.get(i)[n];
 								}
 							}
 						}
