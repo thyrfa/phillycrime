@@ -1,25 +1,6 @@
 package com.example.phillycrime;
 
-import java.io.File;
-import java.io.FileReader;
-import java.util.Calendar;
-import java.util.List;
-
-import android.app.Activity;
-import android.app.FragmentTransaction;
-import android.location.Location;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.view.Window;
-import au.com.bytecode.opencsv.CSVReader;
-
-import com.google.android.gms.location.LocationClient;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMapOptions;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+import android.support.v4.app.FragmentTransaction;
 
 public class MainActivity extends Activity {
 	private GoogleMap map;
