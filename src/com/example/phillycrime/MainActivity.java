@@ -11,6 +11,7 @@ import android.app.FragmentTransaction;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 
 import com.amazonaws.AmazonClientException;
@@ -37,16 +38,18 @@ public class MainActivity extends Activity implements OnMarkerClickListener {
 	protected AmazonS3Client s3Client;
 
 	public boolean AWSused=false;
-	public MainActivity(){
-		s3Client =   new AmazonS3Client( new BasicAWSCredentials( id, key ) );
-
-	}
 	public void onCreate(Bundle savedInstanceState){
+		Log.d("Test", "Test");
         super.onCreate(savedInstanceState);
+		Log.d("Test", "Test");
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        Log.d("Test", "Test");
         setContentView(R.layout.activity_main);
+        Log.d("Test", "Test");
 		MapFragment mMapFragment = MapFragment.newInstance();
+		Log.d("Test", "Test");
 		GoogleMapOptions option= new GoogleMapOptions();
+		Log.d("Test", "Test");
 		option.camera(new CameraPosition(map.getCameraPosition().target,(float)14.0,(float)0.0,(float)0.0));
 		setUpMap();
 		map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
